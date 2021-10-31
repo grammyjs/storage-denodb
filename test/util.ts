@@ -6,6 +6,14 @@ export interface SimpleSession {
   count: number;
 }
 
+export interface ComplexSession {
+  num: number,
+  str: string,
+  nullable: boolean | null,
+  arr: number[],
+  obj: SimpleSession,
+}
+
 export async function sqliteAdapter<T>() {
   const connector = new SQLite3Connector({ filepath: ":memory:" });
   const db = new Database(connector);
