@@ -1,1 +1,1 @@
-export {DenoDBAdapter} from "./lib/adapter.ts";
+export { DenoDBAdapter } from "./lib/adapter.ts";

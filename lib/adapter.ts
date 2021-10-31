@@ -1,11 +1,19 @@
-import { StorageAdapter, Connector } from "../deps.ts";
+import { Database, StorageAdapter } from "../deps.ts";
+import { SessionJson } from "./json_model.ts";
 
 export class DenoDBAdapter<T> implements StorageAdapter<T> {
-  constructor(connector: Connector) {
+  constructor(db: Database) {
+    db.link([SessionJson]);
   }
-  read(key: string) {
-    return null as unknown as T;
+  async read(key: string) {
+    const session = await SessionJson.where("key", key).first();
+    return session ? JSON.parse(session.value) : null;
   }
-  write(key: string, value: T) {}
+  async write(key: string, value: T) {
+    await SessionJson.create({
+      key,
+      value: JSON.stringify(value),
+    });
+  }
   delete(key: string) {}
 }

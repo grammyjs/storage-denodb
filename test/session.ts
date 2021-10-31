@@ -1,19 +1,20 @@
-import { assertEquals, SQLite3Connector } from "../test_deps.ts";
-import { DenoDBAdapter } from "../mod.ts";
+import { assertEquals } from "../test_deps.ts";
+import { SimpleSession, sqliteAdapter } from "./util.ts";
 
-interface SimpleSession {
-  count: number;
-}
-
-Deno.test("can initialize with sqlite memory db", function () {
-  let connector = new SQLite3Connector({ filepath: ":memory:" });
-  let adapter = new DenoDBAdapter<SimpleSession>(connector);
+Deno.test("can initialize with sqlite memory db", async function () {
+  await sqliteAdapter();
 });
 
-Deno.test("will return null for non-existant key", async function(){
-  let connector = new SQLite3Connector({ filepath: ":memory:" });
-  let adapter = new DenoDBAdapter<SimpleSession>(connector);
+Deno.test("will return null for non-existant key", async function () {
+  const adapter = await sqliteAdapter<SimpleSession>();
 
   assertEquals(await adapter.read("123"), null);
-})
+});
 
+Deno.test("can save a key", async function () {
+  const adapter = await sqliteAdapter<SimpleSession>();
+
+  assertEquals(await adapter.read("123"), null);
+  await adapter.write("123", { count: 2 });
+  assertEquals(await adapter.read("123"), { count: 2 });
+});
