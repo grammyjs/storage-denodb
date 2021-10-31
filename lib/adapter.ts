@@ -7,7 +7,7 @@ export class DenoDBAdapter<T> implements StorageAdapter<T> {
   }
   async read(key: string) {
     const session = await SessionJson.where("key", key).first();
-    return session ? JSON.parse(session.value) : null;
+    return session ? JSON.parse(session.value as string) : null;
   }
   async write(key: string, value: T) {
     await SessionJson.create({
@@ -15,5 +15,10 @@ export class DenoDBAdapter<T> implements StorageAdapter<T> {
       value: JSON.stringify(value),
     });
   }
-  delete(key: string) {}
+  async delete(key: string) {
+    const s = await SessionJson.where("key", key).first();
+    if (s) {
+      await s.delete();
+    }
+  }
 }

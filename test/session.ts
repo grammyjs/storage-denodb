@@ -18,3 +18,12 @@ Deno.test("can save a key", async function () {
   await adapter.write("123", { count: 2 });
   assertEquals(await adapter.read("123"), { count: 2 });
 });
+
+Deno.test("can delete a key", async function () {
+  const adapter = await sqliteAdapter<SimpleSession>();
+
+  await adapter.write("123", { count: 2 });
+  assertEquals(await adapter.read("123"), { count: 2 });
+  await adapter.delete("123");
+  assertEquals(await adapter.read("123"), null);
+})

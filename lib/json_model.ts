@@ -5,6 +5,6 @@ export class SessionJson extends Model {
 
   static fields = {
     key: { primaryKey: true, type: DataTypes.STRING },
-    value: DataTypes.TEXT,
+    value: { type: DataTypes.TEXT, allowNull: false },
   };
 }
