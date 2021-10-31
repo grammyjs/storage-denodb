@@ -6,17 +6,23 @@ export class DenoDBAdapter<T> implements StorageAdapter<T> {
     db.link([SessionJson]);
   }
   async read(key: string) {
-    const session = await SessionJson.where("key", key).first();
+    const session = await SessionJson.find(key);
     return session ? JSON.parse(session.value as string) : null;
   }
   async write(key: string, value: T) {
-    await SessionJson.create({
-      key,
-      value: JSON.stringify(value),
-    });
+    const session = await SessionJson.find(key);
+    if (session) {
+      session.value = JSON.stringify(value);
+      await session.update();
+    } else {
+      await SessionJson.create({
+        key,
+        value: JSON.stringify(value),
+      });
+    }
   }
   async delete(key: string) {
-    const s = await SessionJson.where("key", key).first();
+    const s = await SessionJson.find(key);
     if (s) {
       await s.delete();
     }

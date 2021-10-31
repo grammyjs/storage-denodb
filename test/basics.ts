@@ -26,4 +26,13 @@ Deno.test("can delete a key", async function () {
   assertEquals(await adapter.read("123"), { count: 2 });
   await adapter.delete("123");
   assertEquals(await adapter.read("123"), null);
-})
+});
+
+Deno.test("can edit a key", async function () {
+  const adapter = await sqliteAdapter<SimpleSession>();
+
+  await adapter.write("123", { count: 2 });
+  assertEquals(await adapter.read("123"), { count: 2 });
+  await adapter.write("123", { count: 3 });
+  assertEquals(await adapter.read("123"), { count: 3 });
+});
