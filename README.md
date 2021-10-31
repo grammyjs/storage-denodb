@@ -15,7 +15,7 @@ const db = new Database(connection);
 3. Define session structure
 ```ts
 interface SessionData {
-  counter: number;
+  count: number;
 }
 type MyContext = Context & SessionFlavor<SessionData>;
 ```
