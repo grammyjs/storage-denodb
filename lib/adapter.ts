@@ -22,9 +22,6 @@ export class DenoDBAdapter<T> implements StorageAdapter<T> {
     }
   }
   async delete(key: string) {
-    const s = await SessionJson.find(key);
-    if (s) {
-      await s.delete();
-    }
+    await SessionJson.deleteById(key);
   }
 }
