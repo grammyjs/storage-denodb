@@ -34,3 +34,19 @@ Deno.test("complex object", async function () {
   await adapter.write("123", example);
   assertEquals(await adapter.read("123"), example);
 });
+
+Deno.test("falsy primitive", async function () {
+  const adapterNumber = await sqliteAdapter<number>();
+
+  await adapterNumber.write("123", 0);
+  assertEquals(await adapterNumber.read("123"), 0);
+  await adapterNumber.write("123", 1);
+  assertEquals(await adapterNumber.read("123"), 1);
+
+  const adapterBool = await sqliteAdapter<boolean>();
+
+  await adapterBool.write("123", false);
+  assertEquals(await adapterBool.read("123"), false);
+  await adapterBool.delete("123");
+  assertEquals(await adapterBool.read("123"), null);
+});
