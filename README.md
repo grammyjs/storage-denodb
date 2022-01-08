@@ -25,7 +25,7 @@ const bot = new Bot<MyContext>("<Token>");
 
 bot.use(session({
   initial: () => { count: 0 },
-  storage: new DenoDBAdapter<SessionData>(db),
+  storage: new DenoDBAdapte(db),
 }));
 ```
 5. Use `ctx.session` as explained in [session plugin](https://grammy.dev/plugins/session.html)'s docs.
@@ -43,6 +43,6 @@ const bot = new Bot<MyContext>("<Token>");
 
 bot.use(session({
   initial: () => "test",
-  storage: new DenoDBAdapter<string>(db),
+  storage: new DenoDBAdapter(db),
 }));
 ```
