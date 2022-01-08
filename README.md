@@ -33,10 +33,7 @@ type MyContext = Context & SessionFlavor<SessionData>;
 const bot = new Bot<MyContext>("<Token>");
 
 bot.use(session({
-  initial: () => {
-    count:
-    0;
-  },
+  initial: () => ({ count: 0 }),
   storage: new DenoDBAdapte(db),
 }));
 ```
