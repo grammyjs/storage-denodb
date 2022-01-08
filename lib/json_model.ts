@@ -1,6 +1,6 @@
 import { DataTypes, Model } from "../deps.ts";
 
-export class SessionJson extends Model {
+export class Session extends Model {
   static table = "sessions";
 
   static fields = {
