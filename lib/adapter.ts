@@ -4,7 +4,7 @@ import { Session } from "./json_model.ts";
 export class DenoDBAdapter<T> implements StorageAdapter<T> {
   constructor(db: Database) {
     db.link([Session]);
-  }
+  } 
 
   async read(key: string) {
     const session = await Session.find(key);
