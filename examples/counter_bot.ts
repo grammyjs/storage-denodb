@@ -3,12 +3,12 @@ import {
   Context,
   session,
   SessionFlavor,
-} from "https://deno.land/x/grammy@v1.3.4/mod.ts";
+} from "https://deno.land/x/grammy@v1.6.1/mod.ts";
 import {
   Database,
   PostgresConnector,
   SQLite3Connector,
-} from "https://deno.land/x/denodb@v1.0.39/mod.ts";
+} from "https://deno.land/x/denodb@v1.0.40/mod.ts";
 import { DenoDBAdapter } from "../mod.ts";
 
 // Define session structure
@@ -38,7 +38,7 @@ const db = new Database(connection);
 const bot = new Bot<MyContext>("<Token>");
 bot.use(session({
   initial: () => ({ count: 0 }),
-  storage: new DenoDBAdapter<SessionData>(db),
+  storage: new DenoDBAdapter(db),
 }));
 
 // (optional) sync the database if you're not using migrations
