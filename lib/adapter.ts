@@ -1,5 +1,5 @@
 import { Database, StorageAdapter } from "../deps.ts";
-import { Session } from "./json_model.ts";
+import { Session } from "./model.ts";
 
 export class DenoDBAdapter<T> implements StorageAdapter<T> {
     constructor(db: Database) {
