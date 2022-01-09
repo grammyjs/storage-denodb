@@ -1,8 +1,6 @@
 # DenoDB database storage adapter for grammY
 
-Database storage adapter that can be used to
-[store your session data](https://grammy.dev/plugins/session.html) via
-[DenoDB](https://github.com/eveningkid/denodb) when using sessions.
+Database storage adapter that can be used to [store your session data](https://grammy.dev/plugins/session.html) via[DenoDB](https://github.com/eveningkid/denodb) when using sessions.
 
 ## Instructions
 
@@ -22,7 +20,7 @@ const db = new Database(connection);
 
 ```ts
 interface SessionData {
-  count: number;
+    count: number;
 }
 type MyContext = Context & SessionFlavor<SessionData>;
 ```
@@ -33,8 +31,8 @@ type MyContext = Context & SessionFlavor<SessionData>;
 const bot = new Bot<MyContext>("<Token>");
 
 bot.use(session({
-  initial: () => ({ count: 0 }),
-  storage: new DenoDBAdapte(db),
+    initial: () => ({ count: 0 }),
+    storage: new DenoDBAdapte(db),
 }));
 ```
 
@@ -54,7 +52,7 @@ type MyContext = Context & SessionFlavor<string>;
 const bot = new Bot<MyContext>("<Token>");
 
 bot.use(session({
-  initial: () => "test",
-  storage: new DenoDBAdapter(db),
+    initial: () => "test",
+    storage: new DenoDBAdapter(db),
 }));
 ```
