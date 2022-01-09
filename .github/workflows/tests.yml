@@ -14,4 +14,4 @@ jobs:
         uses: maximousblk/setup-deno@v1
       - run: deno -V
       - name: Run tests
-        run: deno test test/session.ts --unstable
+        run: deno test --unstable
