@@ -7,7 +7,7 @@ Database storage adapter that can be used to [store your session data](https://g
 1. Import the adapter
 
    ```ts
-   import { DenoDBAdapter } from "https://deno.land/x/zumoshi/grammy_session_denodedb/mod.ts";
+   import { DenoDBAdapter } from "https://deno.land/x/zumoshi/grammy_session_denodb/mod.ts";
    ```
 
 2. Create a [Database](https://github.com/eveningkid/denodb#first-steps)
@@ -32,7 +32,7 @@ Database storage adapter that can be used to [store your session data](https://g
 
    bot.use(session({
        initial: () => ({ count: 0 }),
-       storage: new DenoDBAdapte(db),
+       storage: new DenoDBAdapter(db),
    }));
    ```
 
