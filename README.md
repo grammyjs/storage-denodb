@@ -1,3 +1,7 @@
+# Archived!!!
+
+All storages moved to our new monorepository, contained all adapters inside of it. Check it out: https://github.com/grammyjs/storages
+
 # DenoDB Database Storage Adapter for grammY
 
 Database storage adapter that can be used to [store your session data](https://grammy.dev/plugins/session.html) via [DenoDB](https://github.com/eveningkid/denodb) when using sessions.
